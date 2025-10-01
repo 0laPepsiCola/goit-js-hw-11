@@ -1,18 +1,122 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-/* Common styles */
-@import url('./reset.css');
-@import url('./base.css');
-@import url('./container.css');
-@import url('./animations.css');
+@import url("./reset.css");
+@import url("./base.css");
 
-/* Sections style */
-@import url('./header.css');
-@import url('./vite-promo.css');
-@import url('./badges.css');
-@import url('./back-link.css');
-@import url('./footer.css');
+body {
+  font-family: "Montserrat", sans-serif;
+  background: #fff;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  margin-top: 36px;
+}
+
+.form input[type="text"] {
+  border: 1px solid #808080;
+  border-radius: 4px;
+  min-width: 272px;
+  max-height: 40px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  padding-left: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+input[type="text"]:focus {
+  outline: 1px solid #4e75ff;
+}
+input[type="text"]:hover {
+  outline: 1px solid #000;
+}
+
+.form button {
+  border-radius: 8px;
+  padding: 8px 16px;
+  min-width: 91px;
+  max-height: 40px;
+  cursor: pointer;
+  background: #4e75ff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+  border: none;
+}
+
+button:hover {
+  background: #6c8cff;
+}
+
+.gallery {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.gallery-item {
+  background: #fff;
+  border: 1px solid #808080;
+  max-width: 360px;
+  min-height: 200px;
+  overflow: hidden;
+}
+.gallery-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.info {
+  font-family: "Montserrat", sans-serif;
+  padding: 4px 20px;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 2;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+.info-item {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+.loader.visible {
+  display: flex;
+}
+.loader.hidden {
+  display: none;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+}
+
+.loader-text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
