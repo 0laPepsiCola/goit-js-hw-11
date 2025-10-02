@@ -1,26 +1,27 @@
-import { getImagesByQuery } from './js/pixabay-api';
+import { getImagesByQuery } from "./js/pixabay-api";
 import {
   createGallery,
   clearGallery,
   showLoader,
   hideLoader,
-} from './js/render-functions';
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+} from "./js/render-functions";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+import xOctagonIcon from "./img/bi_x-octagon.svg";
 
-const form = document.querySelector('.form');
-const input = form.elements['search-text'];
+const form = document.querySelector(".form");
+const input = form.elements["search-text"];
 const PER_PAGE = 40;
 
-form.addEventListener('submit', async e => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const query = input.value.trim();
 
   if (!query) {
     iziToast.warning({
-      title: 'Warning',
-      message: 'Please enter a search query',
-      position: 'topRight',
+      title: "Warning",
+      message: "Please enter a search query",
+      position: "topRight",
     });
     return;
   }
@@ -30,30 +31,22 @@ form.addEventListener('submit', async e => {
   try {
     const data = await getImagesByQuery(query, PER_PAGE);
     if (!data || !Array.isArray(data.hits) || data.hits.length === 0) {
-      iziToast.info({
-        title: 'No results',
+      iziToast.error({
+        theme: "dark",
+        color: "#ef4040",
         message:
-          'Sorry, there are no images matching your search query. Please try again!',
-        position: 'topRight',
+          "Sorry, there are no images matching your search query. Please try again!",
+        messageColor: "#fafafb",
+        messageSize: "16px",
+        messageLineHeight: 24,
+        iconUrl: xOctagonIcon,
+        maxWidth: 432,
+        position: "topRight",
       });
       hideLoader();
       return;
     }
     createGallery(data.hits);
-
-    iziToast.success({
-      title: 'Success',
-      message: `Found ${data.totalHits} images. Showing ${data.hits.length}.`,
-      position: 'topRight',
-      timeout: 2000,
-    });
-  } catch (error) {
-    console.error(error);
-    iziToast.error({
-      title: 'Error',
-      message: 'Something went wrong while fetching images.',
-      position: 'topRight',
-    });
   } finally {
     hideLoader();
   }
